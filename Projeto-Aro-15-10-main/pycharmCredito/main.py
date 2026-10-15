@@ -11,7 +11,7 @@ bcrypt = Bcrypt(app)
 app.config["SECRET_KEY"] = "Chavesdfglkjhgfdshjkjhgfdcvbmnb"
 # CONEXÃO COM O BANCO
 host = "localhost"
-database = r"C:\Users\Aluno\Downloads\Projeto-Aro-iniciante\Projeto-Aro-15-10-main\BANCO-ARO-CREDITO-FINAL\BANCO.FDB"
+database = r"C:\Users\Aluno\Downloads\ARO-100--main\ARO-100--main\Projeto-Aro-15-10-main\BANCO-ARO-CREDITO-FINAL\BANCO.FDB"
 user = "SYSDBA"
 password = "sysdba"
 
