@@ -1,4 +1,3 @@
-# IMPORTAÇÕES
 
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 
@@ -7,21 +6,13 @@ import fdb
 from flask_bcrypt import Bcrypt
 
 # CONFIGURAÇÃO DO FLASK
-
 app = Flask(__name__, template_folder="Templates", static_folder="Static", static_url_path="/static")
-
 bcrypt = Bcrypt(app)
-
 app.config["SECRET_KEY"] = "Chavesdfglkjhgfdshjkjhgfdcvbmnb"
-
 # CONEXÃO COM O BANCO
-
 host = "localhost"
-
 database = r"C:\Users\Aluno\Downloads\Projeto-Aro-iniciante\Projeto-Aro-15-10-main\BANCO-ARO-CREDITO-FINAL\BANCO.FDB"
-
 user = "SYSDBA"
-
 password = "sysdba"
 
 con = fdb.connect(
@@ -34,7 +25,7 @@ con = fdb.connect(
 # VERIFICAÇÃO DE SENHA FORTE
 
 def senha_forte(senha):
-    if len(senha) < 8 or len(senha.encode("utf-8")) > 72:
+    if len(senha) < 8 :
         return False
 
     tem_maiuscula = False
@@ -154,7 +145,7 @@ def cadastro():
 
     if not senha_forte(senha):
         flash(
-            "A senha deve ter pelo menos 8 caracteres, letras maiúsculas, minúsculas, números e um símbolo (! @ # %), sem espaços e com até 72 bytes em UTF-8.",
+            "A senha deve ter pelo menos 8 caracteres, letras maiúsculas, minúsculas, números e um símbolo (! @ # %) e sem espaços. ",
             "error"
         )
 
@@ -178,8 +169,7 @@ def cadastro():
 
         despesa_mensal = float(despesa_mensal)
 
-        if not (-float("inf") < receita_mensal < float("inf")) or not (-float("inf") < despesa_mensal < float("inf")):
-            raise ValueError("Renda e despesas devem ser finitas.")
+        # Impede renda ou despesas negativas.
 
         if receita_mensal < 0 or despesa_mensal < 0:
             flash("Os valores não podem ser negativos!", "error")
@@ -403,8 +393,7 @@ def salvar_edicao():
 
         despesa_mensal = float(despesa_mensal)
 
-        if not (-float("inf") < receita_mensal < float("inf")) or not (-float("inf") < despesa_mensal < float("inf")):
-            raise ValueError("Renda e despesas devem ser finitas.")
+
 
         if receita_mensal < 0 or despesa_mensal < 0:
             flash("Os valores não podem ser negativos!", "error")
